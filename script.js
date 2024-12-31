@@ -7,11 +7,11 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-   return num1 * num2;
+   return (num1 * num2).toFixed(1);
 }
 
 function divide(num1, num2) {
-   return num1 / num2;
+   return (num1 / num2).toFixed(1);
 }
 
 let numbers = [];
@@ -21,20 +21,20 @@ let operator = '';
 const display = document.querySelector('.display');
 
 function operate(numbers, operator) {
-  const numbersToInt = numbers.map(num => parseInt(num));
+  const numsToFloat = numbers.map(num => parseFloat(num));
   
   switch(operator) {
     case "+":
-      display.textContent = add(...numbersToInt);
+      display.textContent = add(...numsToFloat);
       break;
     case "-":
-      display.textContent = subtract(...numbersToInt);
+      display.textContent = subtract(...numsToFloat);
       break;
     case "*":
-      display.textContent = multiply(...numbersToInt);
+      display.textContent = multiply(...numsToFloat);
       break;
     case "/":
-      display.textContent = divide(...numbersToInt);
+      display.textContent = divide(...numsToFloat);
       break;
     default:
       console.log("Wrong input");
@@ -56,8 +56,12 @@ nums.forEach(num => {
     if (!currentInput && !numbers.length) {
       display.textContent = '';
     }
+    if (currentInput.includes('.') && e.target.textContent === 
+  '.') {
+      return;
+    }
     currentInput += e.target.textContent;
-    display.textContent += e.target.textContent;
+    display.textContent = currentInput;
   })
 })
 
@@ -65,8 +69,13 @@ const operands = document.querySelectorAll('.operand');
 operands.forEach(operand => {
   operand.addEventListener('click', (e) => {
     operator = e.target.textContent;
-    display.textContent += e.target.textContent;
-    numbers.push(currentInput);
+    
+    if (display.textContent) {
+      numbers.push(display.textContent);
+    } else {
+      numbers.push(currentInput);
+    };
+    
     currentInput = '';
   })
 })
@@ -74,6 +83,8 @@ operands.forEach(operand => {
 const equal = document.querySelector('.equal');
 equal.addEventListener('click', () => {
   numbers.push(currentInput);
+  console.log(numbers);
+  
   operate(numbers, operator);
   clear();
 });

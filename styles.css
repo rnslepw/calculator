@@ -5,20 +5,23 @@ body {
 }
 
 .calculator {
-  margin-top: 3rem;
-  padding: 1rem;
+  margin-top: 1rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  border: 0.5rem solid slategray;
+  border-radius: 1rem;
 }
 
 .display {
-  height: 5rem;
-  font-size: 3rem;
+  height: 2.5rem;
+  font-size: 2.5rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: red;
+  background-color: lightblue;
+  color: darkblue;
   padding: 1rem;
 }
 
@@ -29,13 +32,15 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   width: 25rem;
-  background-color: blue;
+  color: darkblue;
+  background-color: lightyellow;
 }
 
 .num, .operand, .equal, .clear {
   width: 5rem;
   height: 5rem;
-  border: 1px solid red;
+  background-color: lightslategray;
+  color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
